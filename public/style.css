@@ -1,213 +1,205 @@
 :root {
-    --dark-bg: #1a1a1a;
-    --dark-surface: #252525;
-    --dark-text: #a0a0a0;
-    --dark-border: #444;
-    --accent-chaos: #ff4d4d; /* un rojo para el cursor caótico */
+    --dark-bg: #111111;
+    --dark-surface: #1e1e1e;
+    --dark-text: #b3b3b3;
+    --dark-heading: #ffffff;
+    --dark-border: #333;
     
-    --light-bg: #f5f5f7;
+    --light-bg: #f9f9f9;
     --light-surface: #ffffff;
-    --light-text: #222222;
-    --light-border: #e1e1e1;
+    --light-text: #333333;
+    --light-heading: #000000;
+    --light-border: #e5e5e5;
 
-    --primary-action: #c888f8;
-    --primary-gradient: linear-gradient(45deg, #b367f0, #ee90ff);
+    --primary-action: #a855f7; /* Un morado más vibrante */
+    --primary-gradient: linear-gradient(45deg, #a855f7, #d946ef);
+    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     text-transform: lowercase;
-    display: flex;
-    flex-direction: column;
     height: 100vh;
-    overflow: hidden; /* Evita el scroll */
-}
-
-header, footer {
-    width: 100%;
-    text-align: center;
-    padding: 15px;
+    overflow: hidden;
+    color: var(--dark-text);
     background-color: var(--dark-bg);
-    color: #777;
-    z-index: 20; /* Para que esté por encima de los paneles */
-}
-
-header {
-    border-bottom: 1px solid var(--dark-border);
-}
-
-footer {
-    border-top: 1px solid var(--dark-border);
-    font-size: 0.9rem;
-}
-
-.header-logo {
-    height: 24px;
-    opacity: 0.7;
-    vertical-align: middle;
-}
-
-footer a {
-    color: var(--primary-action);
-    text-decoration: none;
-    font-weight: bold;
 }
 
 .split-container {
     display: flex;
-    flex: 1; /* Ocupa todo el espacio vertical disponible */
-    position: relative; /* Clave para posicionar el botón central */
+    height: 100%;
+    position: relative;
 }
 
 .panel {
     flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: background-color 0.3s;
-}
-
-.panel label {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.panel textarea {
-    width: 100%;
-    flex: 1;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    padding: 20px;
-    resize: none;
-    line-height: 1.6;
-}
-
-/* --- Estilos del panel caótico (Izquierda) --- */
-.chaotic-panel {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-}
-.chaotic-panel textarea {
-    background-color: var(--dark-surface);
-    color: #ddd;
-    border: 1px solid var(--dark-border);
-    font-family: 'Space Mono', monospace; /* Fuente que se siente más "cruda" */
-    caret-color: var(--accent-chaos); /* Cursor rojo */
-}
-.chaotic-panel textarea:focus {
-    outline: 2px solid var(--primary-action);
-}
-
-/* --- Estilos del panel pulido (Derecha) --- */
-.polished-panel {
-    background-color: var(--light-bg);
-    color: var(--light-text);
-    position: relative;
-}
-.polished-panel textarea {
-    background-color: var(--light-surface);
-    color: #333;
-    border: 1px solid var(--light-border);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-.polished-panel textarea:focus {
-    outline: 2px solid var(--primary-action);
-}
-
-/* --- El botón mágico (Centro) --- */
-.center-controls {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    text-align: center;
-}
-
-#smoothie-btn {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: none;
-    background: var(--primary-gradient);
-    color: white;
-    font-size: 2.5rem;
-    cursor: pointer;
+    padding: 2vw 4vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 20px rgba(179, 103, 240, 0.4);
+    transition: background-color 0.3s;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 0 0 10px 0;
+}
+
+.explanation {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+    margin: 0 0 25px 0;
+    max-width: 90%;
+}
+
+textarea {
+    width: 100%;
+    height: 35vh;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    padding: 15px;
+    resize: none;
+    line-height: 1.6;
+    font-family: var(--font-body);
+}
+
+textarea:focus { outline: 2px solid var(--primary-action); }
+
+/* --- Panel Caótico (Izquierda) --- */
+.chaotic-panel { background-color: var(--dark-bg); }
+.chaotic-panel h2 { color: var(--dark-heading); }
+.chaotic-panel .explanation { color: var(--dark-text); }
+.chaotic-panel textarea {
+    background-color: var(--dark-surface);
+    color: #e0e0e0;
+    border: 1px solid var(--dark-border);
+}
+
+/* --- Panel Pulido (Derecha) --- */
+.polished-panel { background-color: var(--light-bg); }
+.polished-panel h2 { color: var(--light-heading); }
+.polished-panel .explanation { color: var(--light-text); }
+.polished-panel .content { position: relative; }
+.polished-panel textarea {
+    background-color: var(--light-surface);
+    color: #222;
+    border: 1px solid var(--light-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* --- Controles Centrales --- */
+.center-controls {
+    flex-basis: 350px; /* Ancho de la columna central */
+    flex-shrink: 0;
+    padding: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #181818;
+    border-left: 1px solid var(--dark-border);
+    border-right: 1px solid var(--dark-border);
+}
+
+.center-controls h2 { color: var(--dark-heading); }
+.center-controls .explanation { color: var(--dark-text); }
+
+#smoothie-btn {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 200px;
+    height: 60px;
+    position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
 }
 
 #smoothie-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(179, 103, 240, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
 }
-
 #smoothie-btn:disabled {
-    background: #555;
     cursor: not-allowed;
+    background: #444;
     box-shadow: none;
+    transform: none;
 }
 
-#loading-cat {
-    width: 60px;
-    margin-top: 20px;
+/* --- Animación de Carga --- */
+.loader {
+    display: none;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
 }
+#smoothie-btn.loading .button-text { display: none; }
+#smoothie-btn.loading .loader { display: block; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+/* --- Botón Copiar --- */
 #copy-btn {
     position: absolute;
-    bottom: 60px;
-    right: 60px;
-    background: white;
-    color: var(--primary-action);
-    border: 1px solid var(--primary-action);
+    bottom: 20px;
+    right: 0;
+    background: var(--light-surface);
+    color: #555;
+    border: 1px solid var(--light-border);
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 8px 12px;
     cursor: pointer;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
 }
 
-.hidden {
-    display: none;
+/* --- Logo de Indies --- */
+.indies-corner-logo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
+.indies-corner-logo img { height: 24px; }
+.hidden { display: none !important; }
 
 /* --- Responsive para móviles --- */
-@media (max-width: 768px) {
-    body {
-        height: auto;
-        overflow: auto;
-    }
-    .split-container {
-        flex-direction: column;
-        height: auto;
-    }
-    .panel {
-        min-height: 40vh;
-        padding: 20px;
-    }
-    .center-controls {
-        position: static;
-        transform: none;
-        padding: 20px 0;
-        background-color: #222; /* Un fondo para separar */
-    }
-    #smoothie-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-        margin: 0 auto;
-    }
-    #copy-btn {
-        bottom: 30px;
-        right: 30px;
-    }
+@media (max-width: 900px) {
+    body { height: auto; overflow: auto; }
+    .split-container { flex-direction: column; }
+    .center-controls { border: none; border-top: 1px solid var(--dark-border); border-bottom: 1px solid var(--dark-border); }
+    .content { max-width: 100%; }
 }

@@ -2,34 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawTextInput = document.getElementById('raw-text');
     const polishedTextInput = document.getElementById('polished-text');
     const smoothieBtn = document.getElementById('smoothie-btn');
-    const loadingCat = document.getElementById('loading-cat');
     const copyBtn = document.getElementById('copy-btn');
+    const copyTextSpan = copyBtn.querySelector('.copy-text');
 
-    // Tono por defecto. Simplificamos la UI eliminando los botones.
     const selectedTone = 'amable pero profesional';
 
     smoothieBtn.addEventListener('click', async () => {
         const rawText = rawTextInput.value;
         if (!rawText.trim()) {
-            polishedTextInput.value = "primero necesitas escribir algo en el lado oscuro...";
+            polishedTextInput.value = "hey, necesitas confesar algo primero en el panel de la izquierda.";
             return;
         }
 
-        loadingCat.classList.remove('hidden');
+        smoothieBtn.classList.add('loading');
         smoothieBtn.disabled = true;
-        polishedTextInput.value = "procesando en la licuadora...";
+        polishedTextInput.value = "haciendo el licuado de palabras...";
         copyBtn.classList.add('hidden');
 
         try {
             const response = await fetch('/api/smoothie', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    text: rawText,
-                    tone: selectedTone
-                }),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: rawText, tone: selectedTone }),
             });
 
             if (!response.ok) {
@@ -43,19 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Error al suavizar:", error);
-            polishedTextInput.value = `ups, la licuadora se trabó: ${error.message}. intenta de nuevo.`;
+            polishedTextInput.value = `ups, la magia falló: ${error.message}. intenta de nuevo.`;
         } finally {
-            loadingCat.classList.add('hidden');
+            smoothieBtn.classList.remove('loading');
             smoothieBtn.disabled = false;
         }
     });
 
     copyBtn.addEventListener('click', () => {
-        polishedTextInput.select();
-        document.execCommand('copy');
-        copyBtn.textContent = '¡copiado!';
-        setTimeout(() => {
-            copyBtn.textContent = 'copiar';
-        }, 2000);
+        if (!polishedTextInput.value) return;
+
+        // Método moderno y seguro para copiar al portapapeles
+        navigator.clipboard.writeText(polishedTextInput.value).then(() => {
+            copyTextSpan.textContent = '¡copiado!';
+            setTimeout(() => {
+                copyTextSpan.textContent = 'copiar';
+            }, 2000);
+        }).catch(err => {
+            console.error('falló la copia:', err);
+            copyTextSpan.textContent = 'error';
+        });
     });
 });
