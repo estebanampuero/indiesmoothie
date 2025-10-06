@@ -5,12 +5,13 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "openai": "^4.0.0"
+        "@vercel/analytics": "^1.5.0",
+        "openai": "^4.0.0"
     }
-  }
+}
