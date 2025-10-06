@@ -19,87 +19,60 @@
 
 * { box-sizing: border-box; }
 
-/* === ESTILOS BASE (MOBILE-FIRST Y FLUIDOS) === */
-body {
-    margin: 0;
-    font-family: var(--font-body);
-    text-transform: lowercase;
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-    height: auto;
-    overflow: auto;
-}
+body { margin: 0; font-family: var(--font-body); background-color: var(--dark-bg); color: var(--dark-text); text-transform: lowercase; }
 
-.split-container {
-    display: block;
-}
-
-.panel {
-    /* Padding fluido: se ajusta entre un mínimo y un máximo */
-    padding: clamp(25px, 8vw, 40px) clamp(20px, 5vw, 30px);
-    min-height: 50vh;
+/* === SECCIÓN HERO CON PARALLAX === */
+.hero {
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    padding: 20px;
+    /* La magia del Parallax */
+    background-image: url('/public/images/scribbles.svg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-.content {
-    width: 100%;
-    animation: fadeInUp 0.8s ease-out forwards;
+.hero-content {
+    max-width: 700px;
+    animation: fadeIn 1.5s ease-out;
 }
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-h2 {
+.hero h1 {
     font-family: var(--font-heading);
-    /* Tipografía fluida: la fuente crece con el ancho de la pantalla */
-    font-size: clamp(1.6rem, 1.2rem + 2.5vw, 2.2rem);
-    margin: 0 0 10px 0;
-}
-
-.explanation {
-    /* Tipografía fluida sutil para el texto del cuerpo */
-    font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
-    line-height: 1.6;
+    font-size: clamp(2rem, 1rem + 5vw, 3.5rem);
+    color: var(--dark-heading);
+    line-height: 1.2;
     margin: 0 0 20px 0;
 }
+.hero p { font-size: clamp(1rem, 0.8rem + 1vw, 1.2rem); line-height: 1.6; margin: 0; }
+.scroll-down-arrow { font-size: 2.5rem; margin-top: 40px; animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-textarea {
-    width: 100%;
-    height: 30vh;
-    border-radius: 8px;
-    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1rem);
-    padding: 15px;
-    resize: none;
-    line-height: 1.6;
-    font-family: var(--font-body);
-}
-
+/* === SECCIÓN DE LA HERRAMIENTA === */
+.smoothie-tool { background-color: var(--dark-bg); }
+.split-container { display: block; }
+.panel { padding: 40px 20px; display: flex; align-items: center; justify-content: center; }
+.content { width: 100%; max-width: 600px; }
+h2 { font-family: var(--font-heading); font-size: 1.8rem; margin: 0 0 10px 0; }
+.explanation { font-size: 1rem; line-height: 1.6; margin: 0 0 20px 0; }
+textarea { width: 100%; height: 30vh; border-radius: 8px; font-size: 1rem; padding: 15px; resize: none; line-height: 1.6; font-family: var(--font-body); }
 textarea:focus { outline: 2px solid var(--primary-action); }
 
-.chaotic-panel { background-color: var(--dark-bg); }
-.chaotic-panel h2 { color: var(--dark-heading); }
-.chaotic-panel .explanation { color: var(--dark-text); }
+.chaotic-panel h2, .chaotic-panel .explanation { color: var(--dark-heading); }
 .chaotic-panel textarea { background-color: var(--dark-surface); color: #e0e0e0; border: 1px solid var(--dark-border); }
 
-.polished-panel { background-color: var(--light-bg); }
-.polished-panel h2 { color: var(--light-heading); }
-.polished-panel .explanation { color: var(--light-text); }
+.polished-panel { background-color: var(--light-bg); background-image: url('/public/images/circles.svg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.polished-panel h2, .polished-panel .explanation { color: var(--light-heading); }
 .polished-panel .content { position: relative; }
 .polished-panel textarea { background-color: var(--light-surface); color: #222; border: 1px solid var(--light-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
 
-.center-controls {
-    padding: clamp(25px, 8vw, 40px) clamp(20px, 5vw, 30px);
-    text-align: center;
-    background-color: #181818;
-    border-top: 1px solid var(--dark-border);
-    border-bottom: 1px solid var(--dark-border);
-}
+.center-controls { padding: 40px 20px; text-align: center; background-color: #181818; border-top: 1px solid var(--dark-border); border-bottom: 1px solid var(--dark-border); }
 .center-controls h2 { color: var(--dark-heading); }
-.center-controls .explanation { color: var(--dark-text); }
 
 #smoothie-btn { background: var(--primary-gradient); color: white; border: none; border-radius: 12px; padding: 15px 30px; font-size: 1.2rem; font-weight: bold; cursor: pointer; width: 200px; height: 60px; position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3); }
 #smoothie-btn:hover { transform: translateY(-3px); }
@@ -110,66 +83,27 @@ textarea:focus { outline: 2px solid var(--primary-action); }
 #smoothie-btn.loading .loader { display: block; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-#copy-btn { position: absolute; bottom: 15px; right: 15px; background: var(--light-surface); color: #555; border: 1px solid var(--light-border); border-radius: 8px; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+#copy-btn { position: absolute; bottom: 15px; right: 15px; background: var(--light-surface); color: #555; border: 1px solid var(--light-border); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 0.9rem; }
 .hidden { display: none !important; }
 
-/* === EL LOGO RESPONSIVO === */
-.indies-corner-logo {
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #666;
-    text-decoration: none;
-    opacity: 0.7;
-    z-index: 100;
-}
-.indies-corner-logo img {
-    /* Logo fluido: la altura del logo escala con el ancho de la pantalla */
-    height: clamp(20px, 16px + 1.2vw, 32px);
-}
-.indies-corner-logo span {
-    /* El texto junto al logo también es fluido */
-    font-size: clamp(0.7rem, 0.6rem + 0.5vw, 0.9rem);
-}
+/* === SECCIÓN DE BENEFICIOS === */
+.benefits { padding: 60px 20px; text-align: center; background-color: var(--dark-bg); }
+.benefits h2 { font-size: 2rem; color: var(--dark-heading); margin-bottom: 40px; }
+.benefits-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1000px; margin: 0 auto; }
+.benefit-card { background-color: var(--dark-surface); padding: 25px; border-radius: 12px; border: 1px solid var(--dark-border); }
+.benefit-card h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--dark-heading); margin: 0 0 10px 0; }
+.benefit-card p { margin: 0; line-height: 1.6; }
 
+/* === FOOTER === */
+footer { padding: 30px 20px; text-align: center; background-color: #000; }
+.indies-logo-footer { display: inline-flex; align-items: center; gap: 10px; color: #666; text-decoration: none; font-size: 0.8rem; opacity: 0.7; }
+.indies-logo-footer img { height: 24px; }
 
 /* === ESTILOS DESKTOP (Se aplican solo en pantallas anchas) === */
 @media (min-width: 901px) {
-    body {
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .split-container {
-        display: flex;
-        height: 100%;
-    }
-
-    .panel {
-        flex: 1;
-        /* Padding fluido también en desktop para mega responsividad */
-        padding: clamp(30px, 4vh, 60px) clamp(30px, 4vw, 80px);
-        min-height: auto;
-    }
-
-    .center-controls {
-        flex-basis: 350px;
-        flex-shrink: 0;
-        border-left: 1px solid var(--dark-border);
-        border-right: 1px solid var(--dark-border);
-        border-top: none;
-        border-bottom: none;
-    }
-
-    textarea {
-        height: 35vh;
-    }
-
-    #copy-btn {
-        bottom: 20px;
-        right: 0;
-    }
+    .split-container { display: flex; height: 100vh; }
+    .panel { flex: 1; padding: 2vw 4vw; height: 100%; }
+    .center-controls { flex-basis: 350px; flex-shrink: 0; border: none; border-left: 1px solid var(--dark-border); border-right: 1px solid var(--dark-border); }
+    textarea { height: 35vh; }
+    .benefits-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
 }
