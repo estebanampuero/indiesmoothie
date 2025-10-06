@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indiesmoothie | suaviza tus correos</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="https://indies.cl" target="_blank" rel="noopener noreferrer">
+            <img src="/public/images/indies-logo.png" alt="logo indies.cl" class="header-logo">
+        </a>
+        <h1>indiesmoothie</h1>
+        <p class="subtitle">escribe como piensas, nosotros lo pulimos.</p>
+    </header>
+
+    <main>
+        <div class="converter-container">
+            <div class="textarea-box">
+                <label for="raw-text">lo que quieres decir</label>
+                <textarea id="raw-text" placeholder="ej: oye, ¿cuándo me pagan?"></textarea>
+            </div>
+
+            <div class="controls">
+                <div id="tone-selector">
+                    <p>selecciona un tono:</p>
+                    <button class="tone-btn active" data-tone="amable pero profesional">amable</button>
+                    <button class="tone-btn" data-tone="muy formal">formal</button>
+                    <button class="tone-btn" data-tone="directo pero cordial">directo</button>
+                </div>
+                <button id="smoothie-btn">suavizar ✨</button>
+                <img src="/public/images/cat-logo.gif" alt="cargando..." id="loading-cat" class="hidden">
+            </div>
+
+            <div class="textarea-box">
+                <label for="polished-text">tu correo, pulido</label>
+                <textarea id="polished-text" readonly placeholder="aquí aparecerá la magia..."></textarea>
+                <button id="copy-btn" class="hidden">copiar texto</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>creado para el concurso de <a href="https://indies.cl" target="_blank" rel="noopener noreferrer">indies.cl</a></p>
+        <p>¿quieres unirte a la comunidad? <a href="https://discord.gg/JSJSVTBJ" target="_blank" rel="noopener noreferrer">entra a nuestro discord</a></p>
+    </footer>
+
+    <script src="/public/script.js"></script>
+</body>
+</html>
