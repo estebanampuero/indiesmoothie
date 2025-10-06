@@ -11,7 +11,7 @@
     --light-heading: #000000;
     --light-border: #e5e5e5;
 
-    --primary-action: #a855f7; /* Un morado más vibrante */
+    --primary-action: #a855f7;
     --primary-gradient: linear-gradient(45deg, #a855f7, #d946ef);
     --font-body: 'Inter', sans-serif;
     --font-heading: 'Space Grotesk', sans-serif;
@@ -19,35 +19,33 @@
 
 * { box-sizing: border-box; }
 
+/* === ESTILOS BASE (MOBILE-FIRST) === */
 body {
     margin: 0;
     font-family: var(--font-body);
     text-transform: lowercase;
-    height: 100vh;
-    overflow: hidden;
-    color: var(--dark-text);
     background-color: var(--dark-bg);
+    color: var(--dark-text);
+    /* Permitimos el scroll por defecto para móviles */
+    height: auto;
+    overflow: auto;
 }
 
 .split-container {
-    display: flex;
-    height: 100%;
-    position: relative;
+    /* En móvil, es un contenedor de bloques vertical por defecto */
+    display: block;
 }
 
 .panel {
-    flex: 1;
-    padding: 2vw 4vw;
+    padding: 30px 20px;
+    min-height: 50vh; /* Asegura espacio usable en el textarea */
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
-    height: 100%;
 }
 
 .content {
     width: 100%;
-    max-width: 600px;
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
@@ -58,22 +56,21 @@ body {
 
 h2 {
     font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: 1.8rem;
     margin: 0 0 10px 0;
 }
 
 .explanation {
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: 1rem;
     line-height: 1.6;
-    margin: 0 0 25px 0;
-    max-width: 90%;
+    margin: 0 0 20px 0;
 }
 
 textarea {
     width: 100%;
-    height: 35vh;
+    height: 30vh;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 15px;
     resize: none;
     line-height: 1.6;
@@ -104,20 +101,14 @@ textarea:focus { outline: 2px solid var(--primary-action); }
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
 
-/* --- Controles Centrales --- */
+/* --- Controles Centrales (Móvil) --- */
 .center-controls {
-    flex-basis: 350px; /* Ancho de la columna central */
-    flex-shrink: 0;
-    padding: 2vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 30px 20px;
     text-align: center;
     background-color: #181818;
-    border-left: 1px solid var(--dark-border);
-    border-right: 1px solid var(--dark-border);
+    border-top: 1px solid var(--dark-border);
+    border-bottom: 1px solid var(--dark-border);
 }
-
 .center-controls h2 { color: var(--dark-heading); }
 .center-controls .explanation { color: var(--dark-text); }
 
@@ -136,70 +127,57 @@ textarea:focus { outline: 2px solid var(--primary-action); }
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
 }
+#smoothie-btn:hover { transform: translateY(-3px); }
+#smoothie-btn:disabled { cursor: not-allowed; background: #444; box-shadow: none; transform: none; }
 
-#smoothie-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
-}
-#smoothie-btn:disabled {
-    cursor: not-allowed;
-    background: #444;
-    box-shadow: none;
-    transform: none;
-}
-
-/* --- Animación de Carga --- */
-.loader {
-    display: none;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #fff;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-}
+.loader { display: none; border: 3px solid rgba(255, 255, 255, 0.3); border-top: 3px solid #fff; border-radius: 50%; width: 25px; height: 25px; animation: spin 1s linear infinite; margin: 0 auto; }
 #smoothie-btn.loading .button-text { display: none; }
 #smoothie-btn.loading .loader { display: block; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* --- Botón Copiar --- */
-#copy-btn {
-    position: absolute;
-    bottom: 20px;
-    right: 0;
-    background: var(--light-surface);
-    color: #555;
-    border: 1px solid var(--light-border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-}
-
-/* --- Logo de Indies --- */
-.indies-corner-logo {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #666;
-    text-decoration: none;
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-.indies-corner-logo img { height: 24px; }
+#copy-btn { position: absolute; bottom: 15px; right: 15px; background: var(--light-surface); color: #555; border: 1px solid var(--light-border); border-radius: 8px; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 .hidden { display: none !important; }
 
-/* --- Responsive para móviles --- */
-@media (max-width: 900px) {
-    body { height: auto; overflow: auto; }
-    .split-container { flex-direction: column; }
-    .center-controls { border: none; border-top: 1px solid var(--dark-border); border-bottom: 1px solid var(--dark-border); }
-    .content { max-width: 100%; }
+.indies-corner-logo { position: fixed; bottom: 15px; left: 15px; display: flex; align-items: center; gap: 10px; color: #666; text-decoration: none; font-size: 0.8rem; opacity: 0.7; z-index: 100; }
+.indies-corner-logo img { height: 24px; }
+
+
+/* === ESTILOS DESKTOP (Se aplican solo en pantallas anchas) === */
+@media (min-width: 901px) {
+    body {
+        /* Bloqueamos el scroll solo en desktop */
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .split-container {
+        /* Activamos la vista de 3 columnas */
+        display: flex;
+        height: 100%;
+    }
+
+    .panel {
+        flex: 1;
+        padding: 2vw 4vw;
+        min-height: auto;
+    }
+
+    .center-controls {
+        flex-basis: 350px;
+        flex-shrink: 0;
+        border-left: 1px solid var(--dark-border);
+        border-right: 1px solid var(--dark-border);
+        /* Quitamos los bordes superior/inferior en desktop */
+        border-top: none;
+        border-bottom: none;
+    }
+
+    textarea {
+        height: 35vh;
+    }
+
+    #copy-btn {
+        bottom: 20px;
+        right: 0;
+    }
 }
