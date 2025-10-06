@@ -3,43 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>indiesmoothie | de crudo a pulido</title>
+    <title>indiesmoothie | de caos a cordial</title>
     <link rel="stylesheet" href="/public/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <a href="https://indies.cl" target="_blank" rel="noopener noreferrer">
-            <img src="/public/images/indies-logo.png" alt="logo indies.cl" class="header-logo">
-        </a>
-    </header>
 
     <main class="split-container">
         <!-- panel caótico de la izquierda -->
         <div class="panel chaotic-panel">
-            <label for="raw-text">1. escribe tu idea en bruto</label>
-            <textarea id="raw-text" placeholder="ej: necesito el informe para ayer, ¿dónde está?"></textarea>
+            <div class="content">
+                <h2>paso 1: la confesión</h2>
+                <p class="explanation">
+                    admítelo. esto es lo que realmente quieres gritarle a tu jefe.
+                    escríbelo aquí, sin filtros. prometemos no juzgarte (mucho).
+                </p>
+                <textarea id="raw-text" placeholder="ej: ¿otro cambio a última hora? ¿es en serio?"></textarea>
+            </div>
         </div>
 
         <!-- el botón mágico en el centro -->
         <div class="center-controls">
-            <button id="smoothie-btn" title="suavizar texto">✨</button>
-            <img src="/public/images/cat-logo.gif" alt="cargando..." id="loading-cat" class="hidden">
+            <div class="control-content">
+                <h2>paso 2: el milagro</h2>
+                <p class="explanation">
+                    presiona el botón.
+                    convierte tu ira en un correo tan amable que hasta tu abuela lo aprobaría.
+                </p>
+                <button id="smoothie-btn" title="hacer magia">
+                    <span class="button-text">suavizar</span>
+                    <div class="loader"></div>
+                </button>
+            </div>
         </div>
 
         <!-- panel pulido de la derecha -->
         <div class="panel polished-panel">
-            <label for="polished-text">2. copia el resultado pulido</label>
-            <textarea id="polished-text" readonly placeholder="...aquí aparecerá la magia."></textarea>
-            <button id="copy-btn" class="hidden">copiar</button>
+            <div class="content">
+                <h2>paso 3: el escape</h2>
+                <p class="explanation">
+                    copia, pega y envía.
+                    nadie sabrá el caos que había en tu corazón. quedas como un profesional. de nada.
+                </p>
+                <textarea id="polished-text" readonly placeholder="...y aquí está la versión que sí te dará un aumento."></textarea>
+                <button id="copy-btn" class="hidden">
+                    <!-- SVG para el ícono de copiar -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zM-1 7a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H-.5A.5.5 0 0 1-1 7z"/>
+                    </svg>
+                    <span class="copy-text">copiar</span>
+                </button>
+            </div>
         </div>
     </main>
-
-    <footer>
-        <p>un proyecto para <a href="https://indies.cl" target="_blank" rel="noopener noreferrer">indies.cl</a> | ¿quieres unirte? <a href="https://discord.gg/JSJSVTBJ" target="_blank" rel="noopener noreferrer">entra al discord</a></p>
-    </footer>
+    
+    <a href="https://indies.cl" class="indies-corner-logo" target="_blank" rel="noopener noreferrer">
+        <img src="/public/images/indies-logo.png" alt="logo indies.cl">
+        <span>un proyecto para :indies:</span>
+    </a>
 
     <script src="/public/script.js"></script>
 </body>
